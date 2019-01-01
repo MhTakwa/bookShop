@@ -1,0 +1,65 @@
+{%extends 'base.html.twig'%}
+{%block body%}
+{% for book in books%}{{book.title}}{%endfor%}
+<div class="shopping-area section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="shop-widget">
+                            <div class="shop-widget-top">
+                                <aside class="widget widget-categories">
+                                    <h2 class="sidebar-title text-center">CATEGORY</h2>
+                                    <ul class="sidebar-menu">{% for category in categories%}
+                                        <li>
+                                            <a href="{{path('books',{'category':category.id})}}">
+                                               <i class="fa fa-angle-double-right"></i>
+                                                {{category.libelle}}
+
+                                              
+                                            </a>
+                                        </li>
+                                       {%endfor%}
+                                    </ul>
+                                </aside> 
+                                                
+                          
+                            </div>
+                        </div>
+                    </div>
+                     
+                            <div class="tab-content">
+                                <div class="row tab-pane fade in active" id="home">
+                                 {%for book in books%}
+                                    <div class="shop-single-product-area">
+                                   
+                                        <div class="single-shop-product">
+                                            <div class="col-xs-12 col-sm-5 col-md-4">
+                                                <div class="left-item">
+                                                    <a href="" title="People of the book">
+                                                        <img src="{{book.principImg
+                                                       }}" alt="">
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-xs-12 col-sm-7 col-md-8">
+                                                <div class="deal-product-content">
+                                                    <h4>
+                                                        <a href="#" title="">{{book.title}}</a>
+                                                    </h4>
+
+                                                    <p>{{book.shortDesc}}</p>
+                                                    <p><span>by: </span>{{book.author}}</p>
+                                                    <div class="availability">
+                                                      
+                                                        <span><a href="{{path('details',{'book':book.id})}}">details</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>{%endfor%}
+
+
+                                       
+
+{%endblock%}

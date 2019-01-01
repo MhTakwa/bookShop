@@ -1,0 +1,27 @@
+		{%extends 'base.html.twig'%}
+     {%block body%}
+        <div class="tab-content">
+           <div class="row tab-pane fade in active" id="home">
+                       {%for cat in categories%}
+         
+
+
+                      <div class="shop-single-product-area">
+                      
+                        <div class="col-sm-4 col-sm-3">
+                      <div class="single-banner">
+                        <div class="product-wrapper">
+                          <a href="#" class="single-banner-image-wrapper">
+                            <img alt="" id="image"   src="{{cat.image}}">
+                            <div class="price"><span></span></div>
+                          </a>
+
+                        
+                        </div>
+                        <div class="banner-bottom text-center">
+                          <div class="banner-bottom-title">
+                            <a href="{{path('books',{'category':cat.id})}}">{{cat.libelle}}</a>
+                          </div></div></div></div></div> {%endfor%}
+                                        </div></div></div></div>
+
+      {%endblock%}

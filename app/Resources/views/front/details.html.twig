@@ -1,0 +1,262 @@
+{%extends 'base.html.twig'%}
+{%block body%}
+ <script data-require="jquery@*" data-semver="2.2.0" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+   
+     <div class="single-product-area section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-7">
+                        <div class="single-product-image-inner">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="one">
+                                    
+
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                              <li data-target="#myCarousel" data-slide-to="1"></li>
+                               <li data-target="#myCarousel" data-slide-to="2"></li>
+                                </ol>
+
+                                  <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                 <div class="item active">
+                             <img src="{{book.principIMg}}" alt="Main image">
+                                </div>
+
+                             <div class="item">
+                             <img src="{{book.img1}}" alt="Second Image">
+                             </div>
+
+                           <div class="item">
+                           <img src="{{book.img2}}" alt="Third image">
+                                </div>
+                              </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+                                </div>
+                               </div>
+                            <!-- Nav tabs -->
+            {%set rating_moy=0%}                                       </div>
+                    </div>
+           {%for rating in ratings%}
+          {%set rating_moy=rating_moy +rating.stars%}
+          {%endfor%}
+<div class="col-md-6 col-sm-5">
+                        <div class="single-product-details">
+                        {%if ratings|length!=0%}
+                        
+                                   {%set moy=rating_moy /ratings|length%}           
+                            <div class="list-pro-rating">
+                            {%if moy==0 %}
+                            <label>Book not rated yet,Be the first to rate it.</label>
+                      {%elseif moy==5%}
+                                <i class="fa fa-star icolor"></i>
+                                <i class="fa fa-star icolor"></i>
+                                <i class="fa fa-star icolor"></i>
+                                <i class="fa fa-star icolor"></i>
+                                <i class="fa fa-star icolor"></i>
+                            {%else%}
+                          {%for i in 1..moy|round %}
+
+                          <i class="fa fa-star icolor"></i>
+                                                
+                         {%endfor%}
+                         {%for i in moy|round+1..5 %}
+
+                          <i class="fa fa-star "></i>
+                                                
+                         {%endfor%}
+                         
+                        {%endif%}{%else%}
+                        <label>Book not rated yet,Be the first to rate it.</label>
+                        {%endif%}
+                            </div>
+                            <h2>{{book.title}}</h2><p>By:{{book.author}}</p>
+                            <div class="availability">
+                                <span>In stock</span>
+                            </div>
+                            <p>{{book.shortDesc}}</p>
+                            <div class="single-product-price">
+                                <h2>{{book.price}} DT</h2>
+                            </div>
+                            <form action="{{path('add_book',{'book':book.id})}}" method="GET">
+   
+    
+                            <div class="product-attributes clearfix">
+                                <span class="pull-left" id="quantity-wanted-p">
+								               	<span class="dec qtybutton">-</span>
+							           		<input name="qte" type="text" value="1" class="cart-plus-minus-box">
+                           
+							        		<span class="inc qtybutton">+</span>	
+								         </span>
+                         <span>
+                         <input  class="cart-btn btn-default" type="submit"         value="Add to cart" />
+                               </form>
+                                  
+                               </span>
+                               
+                                 
+
+                            </div>
+                           
+                        <div class="single-product-categories">
+                               <label>Categories:</label>
+                                <span>{%for cat in categories%}
+                                <a href="{{path('books',{'category':cat.id})}}">
+                                            
+                                {{cat.libelle}},</a>{%endfor%}</span>
+                            </div>
+                            <div class="social-share">
+                                <label>Share: </label>
+                                <ul class="social-share-icon">
+                                    <li><a href="#"><i class="flaticon-social"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-social-1"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-social-2"></i></a></li>
+                                </ul> 
+                            </div>
+        <form action="{{path('rate_book',{'book':book.id})}}" method="get">     
+               <div class="rating" role="optgroup">
+      <!-- in Rails just use 1.upto(5) -->  
+      <i class="fa fa-star-o   rating-star" id="rating-1" data-rating="1" tabindex="0" aria-label="Rate as one out of 5 stars" role="radio"></i>
+      <i class="fa fa-star-o  rating-star" id="rating-2" data-rating="2" tabindex="0" aria-label="Rate as two out of 5 stars" role="radio"></i>
+      <i class="fa fa-star-o  rating-star" id="rating-3" data-rating="3" tabindex="0" aria-label="Rate as three out of 5 stars" role="radio"></i>
+      <i class="fa fa-star-o  rating-star" id="rating-4" data-rating="4" tabindex="0" aria-label="Rate as four out of 5 stars" role="radio"></i>
+      <i class="fa fa-star-o  rating-star" id="rating-5" data-rating="5" tabindex="0" aria-label="Rate as five out of 5 stars" role="radio"></i>
+    </div>
+     <input type="hidden" name="star" id="rating-input" min="1" max="5" />
+  <label>Review:</label> <br>  <textarea rows="4" cols="30" name="review"></textarea>
+  </br>
+ <input  class="cart-btn btn-default" type="submit"         value="Add you review and rating" />
+              
+                 </form>
+               
+
+               </div>
+
+                 
+                    </div>
+
+                </div>
+                <div class="row">
+					<div class="col-md-9">
+                        <div class="p-details-tab-content">
+                            <div class="p-details-tab">
+                                <ul class="p-details-nav-tab" role="tablist">
+                                    <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">Description</a></li>
+                                    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Reviews</a></li>
+                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab"></a></li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="tab-content review">
+                                <div role="tabpanel" class="tab-pane active" id="more-info">
+                                    <p>{{book.longDesc|raw}}</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="data">
+                                    <table class="table-data-sheet" border="0">
+                                        <tbody>
+                                        {% for rating in ratings%}
+                                     
+
+                                         
+
+                                            <tr class="odd">
+                                                <td><img src="/img/user.png"> <br>
+                                                     <div class="single-product-details">
+                                                   <div class="list-pro-rating">
+                                                   {%if rating.stars==0%}
+                                                   <div class="list-pro-rating">
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star"></i>
+                            </div>{%elseif rating.stars==5%}
+                            <div class="list-pro-rating">
+                                <i class="fa fa-star icolor"></i>
+                                <i class="fa fa-star icolor"></i>
+                                <i class="fa fa-star icolor"></i>
+                                <i class="fa fa-star icolor"></i>
+                                <i class="fa fa-star icolor"></i>
+                            </div>{%else %}
+                                                 {%for i in 1..rating.stars %}
+
+                                                <i class="fa fa-star icolor"></i>
+                                                
+                                                  {%endfor%}
+                                                  {%for i in rating.stars+1..5 %}
+                                                   <i class="fa fa-star"></i>
+                                                   {%endfor%}
+                                                   </div></div>
+                                             {%endif%}
+                                                  
+                                                </td>
+                                                <td>{{rating.review}}</td>
+                                            </tr>
+                                            {%endfor%}
+                                        </tbody>
+                                   </table>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="reviews">
+                                    <div id="product-comments-block-tab">
+                                        <a href="#" class="comment-btn"><span>Be the first to write your review!</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>  
+            </div>
+        </div>
+
+
+<script type="text/javascript">
+                             $(document).ready(function () {
+  
+  function setRating(rating) {
+    $('#rating-input').val(rating);
+    // fill all the stars assigning the '.selected' class
+    $('.rating-star').removeClass('fa-star-o').addClass('selected');
+    // empty all the stars to the right of the mouse
+    $('.rating-star#rating-' + rating + ' ~ .rating-star').removeClass('selected').addClass('fa-star-o');
+  }
+  
+  $('.rating-star')
+  .on('mouseover', function(e) {
+    var rating = $(e.target).data('rating');
+    // fill all the stars
+    $('.rating-star').removeClass('fa-star').addClass('fa-star icolor');
+    // empty all the stars to the right of the mouse
+    $('.rating-star#rating-' + rating + ' ~ .rating-star').removeClass('fa-star').addClass('fa-star icolor');
+  })
+  .on('mouseleave', function (e) {
+    // empty all the stars except those with class .selected
+    $('.rating-star').removeClass('fa-star').addClass('fa-star icolor');
+  })
+  .on('click', function(e) {
+    var rating = $(e.target).data('rating');
+    setRating(rating);
+  })
+  .on('keyup', function(e){
+    // if spacebar is pressed while selecting a star
+    if (e.keyCode === 32) {
+      // set rating (same as clicking on the star)
+      var rating = $(e.target).data('rating');
+      setRating(rating);
+    }
+  });
+});
+                           </script>
+{%endblock%}

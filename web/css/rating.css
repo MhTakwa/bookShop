@@ -1,0 +1,14 @@
+  .rating {
+  cursor: pointer;
+}
+
+.rating .rating-star {
+  display: inline-block;
+  position: relative;
+  padding-right: 5px;
+  margin-left: -5px;
+  color: #32B5F3;
+}
+.rating .selected:before {
+  content: '\f005';
+}

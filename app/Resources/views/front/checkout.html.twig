@@ -1,0 +1,72 @@
+{%extends 'base.html.twig'%}
+{%block body%}
+		<!-- Breadcrumbs Area Start -->
+		<!-- My Account Area Start -->
+		<div class="my-account-area section-padding">
+			<div class="container">
+				<div class="section-title2">
+					<h2>Procced to Checkout</h2>
+					
+				</div>
+				<div class="row">
+					<div class="addresses-lists">
+						<div class="col-xs-12 col-sm-6 col-lg-6">
+							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+								<div class="panel panel-default">
+									<div class="panel-heading" role="tab" id="headingOne">
+										<h4 class="panel-title">
+											<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+												<i class="fa fa-building"></i>
+											   <span>CHECHOUT</span>
+											</a>
+										</h4>
+									</div>
+									<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+										<div class="panel-body">
+											<div class="coupon-info">
+												<h1 class="heading-title"> Free shipping</h1>
+												<p class="coupon-text">Please fill out the form below.</p>
+												<p class="required">*Required field</p>
+												<form action="{{path('new_order')}}">
+												<input type="hidden" name="montant" value="{{total}}">
+													<p class="form-row">
+														<input type="text" placeholder="Your Full Name *" name="name" required="true" >
+													</p>
+													<p class="form-row">
+														<input name="postale" type="text" placeholder="Address * " required="true">
+													</p>
+													<p class="form-row">
+														<input type="text" placeholder="Email *"  name="mail" required/>
+													</p>
+													<div class="shop-select">
+														<label>Country <span class="required">*</span></label>
+														<select>
+															<option value="tunisia">Tunisia</option>
+															<option value="algeria">Algeria</option>
+															<option value="france">France</option>
+															<option value="germany">Germany</option>
+															<option value="usa">USA</option>
+															<option value="italy">Italy</option>
+															<option value="england">England</option>
+															<option value="other">other</option>
+														</select> 										
+													</div>	
+													<p class="form-row">
+														<input type="text" placeholder="Mobile phone *" required="true" />
+													</p>
+													<p class="required">** You must register at least one phone number.</p>
+													<p class="form-row order-notes">
+														<textarea placeholder="Additional information"></textarea>
+													</p>
+													<p class="form-row">
+														<input type="text" placeholder="Please assign an address title for future reference. *"  />
+													</p>
+													<input type="submit" title="Chechout" value="Checkout>" class="btn button button-small"  >
+														
+												</form>
+											</div>											
+										</div>
+									</div>
+								</div></div></div></div></div></div>
+		
+{%endblock%}

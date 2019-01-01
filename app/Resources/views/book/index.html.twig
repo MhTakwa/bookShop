@@ -1,0 +1,49 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block body %}
+   
+                
+     <div class="module">
+     <div class="module-head">
+     <h3> Book list({{books|length}})</h3>
+            </div>
+            <div class="module-body table">
+           <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped  display" width="100%">
+
+                 
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Shortdesc</th><th></th>
+               
+            </tr>
+
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td><a href="{{ path('admin_books_show', { 'id': book.id }) }}">{{ book.id }}</a></td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.shortDesc }}</td>
+               
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_books_show', { 'id': book.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_books_edit', { 'id': book.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_books_new') }}">Create a new book</a>
+        </li>
+    </ul>
+{% endblock %}
